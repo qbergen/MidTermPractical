@@ -5,9 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.queenabergen.midtermpractical.JSONObject.Example;
+import com.example.queenabergen.midtermpractical.JSONObject.Record;
 import com.example.queenabergen.midtermpractical.JSONObject.VineService;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (response.isSuccessful()) {
                         Log.d(TAG, "Success: GOOD JOB CUE " + response.body());
+                        Example vinePOJO = response.body();
+                        List<Record> listOfPosts = vinePOJO.getData().getRecords();
+                        int logStatement = listOfPosts.size();
+                        Log.d(TAG, String.valueOf(logStatement));
+                        
+
 
                     } else {
                         Log.d(TAG, "ERROR: Something Happened" + response.errorBody().string());
