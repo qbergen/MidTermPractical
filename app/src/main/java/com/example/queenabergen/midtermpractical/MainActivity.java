@@ -3,6 +3,7 @@ package com.example.queenabergen.midtermpractical;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.queenabergen.midtermpractical.JSONObject.Example;
 import com.example.queenabergen.midtermpractical.JSONObject.Record;
@@ -19,12 +20,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = " ";
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d(TAG, "Hey guys ");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://vine.co/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
+                Log.d(TAG, "k " + " test ");
                 try {
                     if (response.isSuccessful()) {
                         Log.d(TAG, "Success: GOOD JOB CUE " + response.body());
@@ -43,7 +46,11 @@ public class MainActivity extends AppCompatActivity {
                         List<Record> listOfPosts = vinePOJO.getData().getRecords();
                         int logStatement = listOfPosts.size();
                         Log.d(TAG, String.valueOf(logStatement));
-                        
+
+                        Record record = new Record();
+                        String username = record.getUsername();
+                        TextView textView = (TextView) findViewById(R.id.textView);
+                        textView.setText(username);
 
 
                     } else {
@@ -59,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Error", t.getMessage());
             }
         });
-
 
     }
 }
