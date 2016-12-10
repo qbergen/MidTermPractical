@@ -1,9 +1,13 @@
 # MidTermPractical
 
 Student Name : Queena "Cue" Bergen
+
 Student ID: Integer.valueOf(Three Three Two Six)
+
 Emulator Version/ Phone API : Nexus 5X : API - 19 
+
 Explanation :
+
 So my first hour was pretty much smoove sailing, I created my POJO and made sure they had annotations and created classes
 for them. I set up my retrofit interface and created my call in my main method. I got alittle confused about the thired step 
 but found out that I needed to use a JSON object as opposed to a Retro fit call. So I deleted my call and interface and 
